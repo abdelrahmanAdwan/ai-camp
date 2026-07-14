@@ -72,13 +72,6 @@ capstone_climate_dashboard/
 Global temperature anomaly series (NOAA **GCAG** & NASA **GISTEMP**), via the
 [datahub.io global-temp dataset](https://github.com/datasets/global-temp).
 
-## 📸 Screenshots
-
-_Add your screenshots to the `screenshots/` folder and link them here:_
-
-<!-- ![Dashboard](screenshots/dashboard.png) -->
-<!-- ![Slider updating the chart](screenshots/slider.png) -->
-<!-- ![ngrok public URL](screenshots/ngrok_url.png) -->
 
 ---
 
