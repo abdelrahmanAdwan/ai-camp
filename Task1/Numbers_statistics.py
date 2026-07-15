@@ -4,43 +4,53 @@
 #          and a Dictionary (number: frequency), then compute
 #          the sum, average, maximum, and minimum.
 # ============================================================
+# ============================================================
+# Homework: Numbers Statistics
+# Purpose: Read numbers from the user, store them in a List
+#          and a Dictionary (number: frequency), then compute
+#          the sum, average, maximum, and minimum.
+# ============================================================
+import re
 
 # ---- Step 1: Take user input ----
-# The user types numbers separated by spaces, e.g. "5 3 8 3 10"
-raw_input_text = input("Enter numbers separated by spaces: ")
+raw_input_text = input("Enter numbers separated by spaces or commas: ")
 
 # ---- Step 2: Store the numbers in a List ----
-# split() breaks the text into pieces, and float() converts
-# each piece into a number. We keep them all in a list.
 numbers_list = []
-for piece in raw_input_text.split():
-    numbers_list.append(float(piece))
+skipped = []
+
+for piece in re.split(r"[\s,;]+", raw_input_text.strip()):
+    if not piece:       
+        continue
+    try:
+        numbers_list.append(float(piece))
+    except ValueError:    
+        skipped.append(piece)
+
+if skipped:
+    
+    print("Ignored (not numbers):", skipped)
+
+if not numbers_list:
+    print("No valid numbers were entered.")
+    raise SystemExit
 
 print("\nList of numbers:", numbers_list)
 
-# ---- Step 3: Store the numbers in a Dictionary ----
-# The dictionary maps each number to how many times it appears
-# (its frequency). Example: [5, 3, 3] -> {5.0: 1, 3.0: 2}
+# ---- Step 3: Dictionary ----
 frequency_dict = {}
 for number in numbers_list:
-    if number in frequency_dict:
-        frequency_dict[number] += 1   # seen before -> add 1
-    else:
-        frequency_dict[number] = 1    # first time -> start at 1
+    frequency_dict[number] = frequency_dict.get(number, 0) + 1
 
 print("Dictionary (number: frequency):", frequency_dict)
 
-# ---- Step 4: Basic statistical operations ----
-# sum()  -> adds all the numbers together
-# len()  -> counts how many numbers there are (for the average)
-# max()  -> the largest value
-# min()  -> the smallest value
+# ---- Step 4: Statistics ----
 total = sum(numbers_list)
 average = total / len(numbers_list)
 maximum = max(numbers_list)
 minimum = min(numbers_list)
 
-# ---- Step 5: Display the results ----
+# ---- Step 5: Display ----
 print("\n----- Statistics -----")
 print("Count of numbers:", len(numbers_list))
 print("Sum:", total)
