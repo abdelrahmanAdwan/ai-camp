@@ -72,10 +72,33 @@ Breast_Cancer_ML_Project/
 └── build_*.py / export_and_analyze.py # scripts that generate the notebooks
 ```
 
+## Web Application (Streamlit)
+
+An interactive web app (`app.py`) exposes the whole pipeline through six pages:
+**Home, Dataset Upload, Model Selection, Model Training, Prediction, Performance
+Dashboard**.
+
+Run it:
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py        # or: ./run_app.ps1   → http://localhost:8501
+```
+
+- **Dataset Upload** — use the bundled data or upload a CSV (preview, dtypes,
+  missing values, class balance).
+- **Model Selection / Training** — pick one of the five algorithms and train it
+  (leakage-safe split + scaling); see metrics, confusion matrix, report.
+- **Prediction** — score a sample row, enter features manually, or upload a
+  batch CSV; shows the malignant/benign verdict with class probabilities. Works
+  with the model trained in-session **or** the saved final model.
+- **Performance Dashboard** — baseline comparison table + metric charts, the
+  in-session model's confusion matrix + ROC curve, and the saved final model.
+
 ## Environment
 
 Python 3.11 with: `pandas, numpy, scikit-learn, matplotlib, seaborn, xgboost,
-joblib, nbformat, nbconvert`.
+joblib, streamlit, nbformat, nbconvert` (see `requirements.txt`).
 
 ## Using the final model on new data
 
